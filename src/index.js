@@ -8,32 +8,27 @@ import reportWebVitals from "./reportWebVitals";
 import ErrorPage from "./ErrorPage";
 import { loader } from "./Loading";
 import ProductDetails from "./ProductDetails";
+import Register from "./Register";
+import Login from "./Login";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import TodoListing from "./TodoListing";
+import TodoDetails from "./TodoDetails";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-    errorElement: <Home />,
-    loader: loader,
+    element: <Home />,
     children: [
       {
-        path: "/about",
-        element: <Home />,
+        path: "todo/:name",
+        element: <TodoDetails />,
       },
-      {
-        path: "/home2",
-        element: <Home2 />,
-      }
     ],
   },
+
   {
-    path: "/home",
-    element: <Home />,
-  },
-  {
-    path: "/product/:id",
-    element: <ProductDetails />,
+    path: "register",
+    element: <Register />,
   },
 ]);
 root.render(
