@@ -13,22 +13,30 @@ import Login from "./Login";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TodoListing from "./TodoListing";
 import TodoDetails from "./TodoDetails";
+import Phome from "./projectComponents/Phome";
+import PLayout from "./projectComponents/PLayout";
+import Profilr from "./projectComponents/Profilr";
+import PProductDetails from "./projectComponents/PProductDetails";
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <PLayout />,
     children: [
       {
-        path: "todo/:name",
-        element: <TodoDetails />,
+        path: "/",
+        element: <Phome />,
       },
+      {
+        path: "profile",
+        element:<Profilr/>,
+      }, 
+      {
+        path:"product/:id",
+        element:<PProductDetails/>,
+      }
     ],
-  },
-
-  {
-    path: "register",
-    element: <Register />,
   },
 ]);
 root.render(
