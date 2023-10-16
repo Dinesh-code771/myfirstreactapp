@@ -1,7 +1,18 @@
 import React from "react";
 
-export default function PNav({ products, setFilteredProducts,selectedProduct,setSelectedProduct }) {
-  
+export default function PNav({
+  products,
+  setFilteredProducts,
+  selectedProduct,
+  setSelectedProduct,
+}) {
+  //get the selected products from local storage
+  React.useEffect(() => {
+    const selected = JSON.parse(localStorage.getItem("selectedProduct"));
+    if (selected) {
+      setSelectedProduct(selected);
+    }
+  }, []);
   return (
     <div
       style={{

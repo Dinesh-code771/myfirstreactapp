@@ -1,8 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-export default function Card({ product, selectedProduct, setSelectedProduct }) {
+export default function Card({
+  product,
+  selectedProduct,
+  setSelectedProduct,
+  changeCartStatus,
+}) {
   const Navigate = useNavigate();
-  console.log(product);
   return (
     <div
       style={{
@@ -18,7 +22,7 @@ export default function Card({ product, selectedProduct, setSelectedProduct }) {
         justifyContent: "space-between",
         overflow: "scroll",
       }}
-      onClick={() => Navigate("/product/1")}
+      onClick={() => Navigate(`/product/${product.id}`)}
     >
       <div
         style={{
@@ -67,10 +71,21 @@ export default function Card({ product, selectedProduct, setSelectedProduct }) {
         }}
         onClick={(e) => {
           e.stopPropagation();
+          // removing form cart
+          if (product.isAddedToCart) {
+            changeCartStatus(product.id);
+            return setSelectedProduct(
+              selectedProduct.filter((p) => p.id !== product.id)
+            );
+          }
+
+          // adding to cart
+          changeCartStatus(product.id);
+
           setSelectedProduct([...selectedProduct, product]);
         }}
       >
-        Add To cart
+        {product.isAddedToCart ? "remove form cart" : "Add to cart"}
       </button>
     </div>
   );

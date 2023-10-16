@@ -7,8 +7,14 @@ import { useOutlet } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 
 export default function Phome() {
-  const [products,setSelectedProduct,selectedProduct] = useOutletContext();
- 
+  const [filteredCategory, setFilteredCategory] = React.useState("ALL");
+  const [
+    products,
+    setSelectedProduct,
+    selectedProduct,
+    changeCartStatus,
+  ] = useOutletContext();
+
   // console.log(data);
 
   return (
@@ -22,8 +28,17 @@ export default function Phome() {
         padding: "20px 15px",
       }}
     >
-      <Sidebar />
-      <Products products={products} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct}/>
+      <Sidebar
+        filteredCategory={filteredCategory}
+        setFilteredCategory={setFilteredCategory}
+      />
+      <Products
+        products={products}
+        changeCartStatus={changeCartStatus}
+        setSelectedProduct={setSelectedProduct}
+        selectedProduct={selectedProduct}
+        filteredCategory={filteredCategory}
+      />
     </div>
   );
 }

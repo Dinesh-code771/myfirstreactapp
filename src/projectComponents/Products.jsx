@@ -2,9 +2,13 @@ import React, { useEffect } from "react";
 import Card from "./Card";
 import data from "./data";
 import { useOutlet } from "react-router-dom";
-export default function Products({products, setSelectedProduct,selectedProduct}) {
-
-
+export default function Products({
+  products,
+  setSelectedProduct,
+  selectedProduct,
+  filteredCategory,
+  changeCartStatus,
+}) {
   return (
     <div
       style={{
@@ -24,9 +28,39 @@ export default function Products({products, setSelectedProduct,selectedProduct})
         }}
         className="cards     "
       >
-        {products?.map((product) => {
-          return <Card key={product.id} product={product} setSelectedProduct={setSelectedProduct} selectedProduct={selectedProduct}/>;
-        })}
+        {products
+          .filter((product) => {
+            switch (filteredCategory) {
+              case "ALL":
+                return product;
+
+              case "mens-clothing":
+                return product.category === "men's clothing";
+
+              case "womens-clothing":
+                return product.category === "women's clothing";
+
+              case "electronics":
+                return product.category === "electronics";
+
+              case "jewelery":
+                return product.category === "jewelery";
+
+              default:
+                return product;
+            }
+          })
+          ?.map((product) => {
+            return (
+              <Card
+                key={product.id}
+                product={product}
+                changeCartStatus={changeCartStatus}
+                setSelectedProduct={setSelectedProduct}
+                selectedProduct={selectedProduct}
+              />
+            );
+          })}
       </div>
     </div>
   );

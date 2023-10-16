@@ -17,7 +17,6 @@ export default function Form() {
         type="text"
         value={details.name}
         onChange={(e) => {
-          console.log(e.target.value);
           setDetails({ ...details, name: e.target.value });
         }}
       ></input>
@@ -27,7 +26,6 @@ export default function Form() {
         type="password"
         value={details.password}
         onChange={(e) => {
-          console.log(e.target.value);
           setDetails({ ...details, password: e.target.value });
         }}
       ></input>
