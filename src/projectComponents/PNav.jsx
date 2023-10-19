@@ -1,11 +1,14 @@
 import React from "react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { increment } from "../slices/counterSlice";
 export default function PNav({
   products,
   setFilteredProducts,
   selectedProduct,
   setSelectedProduct,
 }) {
+  const count = useSelector((state) => state.counter.count);
+  const dispatch = useDispatch();
   //get the selected products from local storage
   React.useEffect(() => {
     const selected = JSON.parse(localStorage.getItem("selectedProduct"));
@@ -31,6 +34,14 @@ export default function PNav({
             <a href="/profile">Profile</a>
           </li>
         </ul>
+        <p>count {count}</p>
+        <button
+          onClick={() => {
+            dispatch(increment(3));
+          }}
+        >
+          ++
+        </button>
       </div>
       <div>
         <div style={{}} className="search">

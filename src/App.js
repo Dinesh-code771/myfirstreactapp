@@ -12,24 +12,36 @@ import Home2 from "./Home2";
 import { useNavigate } from "react-router-dom";
 import { useReducer } from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
-export const MyContext = createContext();
-function reducer(state, action) {
-  switch (action.type) {
-    case "increment":
-      return { count: state.count + 1 };
-    case "decrement":
-      return { count: state.count - 1 };
-    case "reset":
-      return { count: 0 };
-    default:
-      throw new Error();
-  }
-}
+import Sidebar from "./projectComponents/Sidebar";
+import DummySideBar from "./DummySideBar";
+
+// export const MyContext = createContext();
+// function reducer(state, action) {
+//   switch (action.type) {
+//     case "increment":
+//       return { count: state.count + 1 };
+//     case "decrement":
+//       return { count: state.count - 1 };
+//     case "reset":
+//       return { count: 0 };
+//     default:
+//       throw new Error();
+//   }
+// }
 function App() {
-  const [state, dispatch] = useReducer(reducer, { count: 0 });
-  const { data } = useLoaderData();
-  const navigate = useNavigate();
-  console.log(data, "data");
+  const [count, setCount] = useState(0);
+
+  function increment(val) {
+    setCount(count + val);
+  }
+
+  function decrement() {
+    setCount(count - 1);
+  }
+  // const [state, dispatch] = useReducer(reducer, { count: 0 });
+  // const { data } = useLoaderData();
+  // const navigate = useNavigate();
+  // console.log(data, "data");
   // const [searchValue, setSearchValue] = useState("");
   // const [details, setDetails] = useState([]);
   // const [filterResult, setFilterResult] = useState([]);
@@ -46,6 +58,8 @@ function App() {
   //   }
   //   fetchData();
   // }, []);
+
+  // setCount(increment())
 
   // // search
   // useEffect(() => {
@@ -88,9 +102,8 @@ function App() {
   //   setFilterResult(filteredData);
   // }, [sort]);
   return (
-    <MyContext.Provider value={{ state, dispatch }}>
-      <div>
-        {/* <Nav
+    <div>
+      {/* <Nav
         selectedOption={selectedOption}
         searchValue={searchValue}
         onSearch={setSearchValue}
@@ -101,22 +114,10 @@ function App() {
 
       <Home details={filterResult} />
       <Form/> */}
-        {/* <Hookexapmle/> */}
-        <Nav1 />
-        <div>
-          <Outlet />
-        </div>
-        {data.map((item) => {
-          return (
-            <div>
-              <h1 onClick={()=>{navigate(`/product/${item.id}`)}}>{item.title}</h1>
-              <img src={item.image} width={20} height={30} />
-              <p>{item.price}</p>
-            </div>
-          );
-        })}
-      </div>
-    </MyContext.Provider>
+      {/* <Hookexapmle/> */}
+      <Nav />
+      <DummySideBar />
+    </div>
   );
 }
 

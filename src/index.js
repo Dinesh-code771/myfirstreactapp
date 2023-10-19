@@ -17,6 +17,8 @@ import Phome from "./projectComponents/Phome";
 import PLayout from "./projectComponents/PLayout";
 import Profilr from "./projectComponents/Profilr";
 import PProductDetails from "./projectComponents/PProductDetails";
+import { Provider } from "react-redux";
+import store from "./store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const router = createBrowserRouter([
@@ -30,18 +32,25 @@ const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element:<Profilr/>,
-      }, 
+        element: <Profilr />,
+      },
       {
-        path:"product/:id",
-        element:<PProductDetails/>,
-      }
+        path: "product/:id",
+        element: <PProductDetails />,
+      },
     ],
   },
+  {
+    path: "/login",
+    element: <Login />,
+  }
 ]);
 root.render(
   <>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+      {/* <App /> */}
+    </Provider>
   </>
 );
 
