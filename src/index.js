@@ -17,6 +17,9 @@ import Phome from "./projectComponents/Phome";
 import PLayout from "./projectComponents/PLayout";
 import Profilr from "./projectComponents/Profilr";
 import PProductDetails from "./projectComponents/PProductDetails";
+import UHome from "./userManagement/UHome";
+import ULogin from "./userManagement/ULogin";
+import UProfile from "./userManagement/UProfile";
 import { Provider } from "react-redux";
 import store from "./store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -24,26 +27,16 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <PLayout />,
-    children: [
-      {
-        path: "/",
-        element: <Phome />,
-      },
-      {
-        path: "profile",
-        element: <Profilr />,
-      },
-      {
-        path: "product/:id",
-        element: <PProductDetails />,
-      },
-    ],
+    element: <UHome />,
   },
   {
     path: "/login",
-    element: <Login />,
-  }
+    element: <ULogin />,
+  },
+  {
+    path: "/user:id",
+    element: <UProfile />,
+  },
 ]);
 root.render(
   <>
