@@ -34,9 +34,12 @@ const router = createBrowserRouter([
     element: <ULogin />,
   },
   {
-    path: "/user:id",
+    path: "/user/:id",
     element: <UProfile />,
   },
+  {
+
+  }
 ]);
 root.render(
   <>

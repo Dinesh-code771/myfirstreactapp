@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { set } from "../slices/userDetails";
+import { remove, set } from "../slices/userDetails";
 import { useSelector } from "react-redux";
+import AddingUser from "./AddingUser";
 export default function UHome() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -47,6 +48,9 @@ export default function UHome() {
       ])
     );
   }, []);
+  const handleDelete = (id) => {
+    dispatch(remove(id));
+  };
   return (
     <div>
       <h1>User Logged in with role {role}</h1>
@@ -62,17 +66,21 @@ export default function UHome() {
 
       {/* create a table with the data from redux store
        */}
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column"
-      }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          marginBottom: "50px",
+        }}
+      >
         <table
           style={{
             border: "1px solid black",
             borderCollapse: "collapse",
             padding: "10px",
+            marginBottom: "50px",
           }}
         >
           <thead
@@ -92,6 +100,7 @@ export default function UHome() {
               <th>Name</th>
               <th>Age</th>
               <th>Email</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody
@@ -101,41 +110,74 @@ export default function UHome() {
               padding: "10px",
             }}
           >
-            {userDetails.map((user) => {
+            {userDetails.map((user, index) => {
               return (
-                <tr style={{
-                  border: "1px solid black",
-                  borderCollapse: "collapse",
-                  padding: "10px",
-              
-                }}>
-                  <td style={{
+                <tr
+                  // key={index}
+                  style={{
                     border: "1px solid black",
                     borderCollapse: "collapse",
-                    padding: "50px",
-                
-                
-                  }}>{user.name}</td>
-                  <td style={{
-                    border: "1px solid black",
-                    borderCollapse: "collapse",
-                    padding: "50px",
-                
-                
-                  
-                  }}>{user.age}</td>
+                    padding: "10px",
+                  }}
+                >
                   <td
                     style={{
                       border: "1px solid black",
                       borderCollapse: "collapse",
                       padding: "50px",
-                    }} 
-                  >{user.email}</td>
+                    }}
+                  >
+                    {user.name}
+                  </td>
+                  <td
+                    style={{
+                      border: "1px solid black",
+                      borderCollapse: "collapse",
+                      padding: "50px",
+                    }}
+                  >
+                    {user.age}
+                  </td>
+                  <td
+                    style={{
+                      border: "1px solid black",
+                      borderCollapse: "collapse",
+                      padding: "50px",
+                    }}
+                  >
+                    {user.email}
+                  </td>
+                  <td
+                    style={{
+                      border: "1px solid black",
+                      borderCollapse: "collapse",
+                      padding: "50px",
+                    }}
+                  >
+                    <button onClick={() => handleDelete(index)}>Delete</button>
+                  </td>
+                  <td>
+                    <button
+                    style={{
+                      border: "1px solid black",
+                      borderCollapse: "collapse",
+                      padding: "50px",
+                    
+                    }}
+                      onClick={() => {
+                        navigate(`/user/${index}`);
+                      }}
+                    >
+                    view
+                    </button>
+                  </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
+
+        <AddingUser />
       </div>
     </div>
   );
