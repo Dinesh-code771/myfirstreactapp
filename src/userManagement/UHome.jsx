@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { remove, set } from "../slices/userDetails";
 import { useSelector } from "react-redux";
+import { updateRole } from "../slices/userDetails";
 import AddingUser from "./AddingUser";
 export default function UHome() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userDetails = useSelector((state) => state.userDetails.userDetails);
-  const [role, setRole] = React.useState("");
+  const role = useSelector((state) => state.userDetails.userRole);
 
   useEffect(() => {
     // check if the user is logged in or not
@@ -17,36 +18,37 @@ export default function UHome() {
         navigate("/")
       : navigate("/login");
 
-    setRole(localStorage.getItem("userRole"));
+    dispatch(updateRole(localStorage.getItem("userRole")));
   }, []);
 
   console.log(userDetails, "userDetails");
 
   useEffect(() => {
-    dispatch(
-      set([
-        {
-          name: "dinesh",
-          age: 23,
-          email: "dinesh@gmail.com",
-        },
-        {
-          name: "reddy",
-          age: 23,
-          email: "reddy@gmail.com",
-        },
-        {
-          name: "teddy",
-          age: 23,
-          email: "teddy@gmail.com",
-        },
-        {
-          name: "uiui",
-          age: 63,
-          email: "uiuih@gmail.com",
-        },
-      ])
-    );
+    if (userDetails.length === 0)
+      dispatch(
+        set([
+          {
+            name: "dinesh",
+            age: 23,
+            email: "dinesh@gmail.com",
+          },
+          {
+            name: "reddy",
+            age: 23,
+            email: "reddy@gmail.com",
+          },
+          {
+            name: "teddy",
+            age: 23,
+            email: "teddy@gmail.com",
+          },
+          {
+            name: "uiui",
+            age: 63,
+            email: "uiuih@gmail.com",
+          },
+        ])
+      );
   }, []);
   const handleDelete = (id) => {
     dispatch(remove(id));
@@ -113,7 +115,7 @@ export default function UHome() {
             {userDetails.map((user, index) => {
               return (
                 <tr
-                  // key={index}
+                  key={index}
                   style={{
                     border: "1px solid black",
                     borderCollapse: "collapse",
@@ -147,28 +149,31 @@ export default function UHome() {
                   >
                     {user.email}
                   </td>
-                  <td
-                    style={{
-                      border: "1px solid black",
-                      borderCollapse: "collapse",
-                      padding: "50px",
-                    }}
-                  >
-                    <button onClick={() => handleDelete(index)}>Delete</button>
-                  </td>
+                  {role === "admin" ? (
+                    <td
+                      style={{
+                        border: "1px solid black",
+                        borderCollapse: "collapse",
+                        padding: "50px",
+                      }}
+                    >
+                      <button onClick={() => handleDelete(index)}>
+                        Delete
+                      </button>
+                    </td>
+                  ) : null}
                   <td>
                     <button
-                    style={{
-                      border: "1px solid black",
-                      borderCollapse: "collapse",
-                      padding: "50px",
-                    
-                    }}
+                      style={{
+                        border: "1px solid black",
+                        borderCollapse: "collapse",
+                        padding: "50px",
+                      }}
                       onClick={() => {
                         navigate(`/user/${index}`);
                       }}
                     >
-                    view
+                      view
                     </button>
                   </td>
                 </tr>

@@ -4,6 +4,7 @@ export const sideBarSlice = createSlice({
   name: "userDetails",
   initialState: {
     userDetails: [],
+    userRole: "",
   },
   reducers: {
     addition: (state, obj) => {
@@ -12,28 +13,33 @@ export const sideBarSlice = createSlice({
     },
     remove: (state, obj) => {
       // state.userDetails.splice(obj.payload, 1);
+      console.log(obj.payload, "id");
       state.userDetails = state.userDetails.filter(
-        (item, index) => index !== parseInt(obj.payload.id)
+        (item, index) => index !== obj.payload
       );
     },
-    edit: (state) => {
-      state.count = 0;
+    edit: (state, obj) => {
+      // find index of object and update it
+      const index = state.userDetails.findIndex((item, index) => {
+        return index === parseInt(obj.payload.id);
+      });
+      state.userDetails[index] = obj.payload.user;
+      // console.log(array, "array")
+      // state.userDetails = array;
     },
     set: (state, obj) => {
       // find index of object and update it
-      const newUpdatearray = [...state.userDetails];
-      const index = state.userDetails.findIndex(
-        (item, index) => index === parseInt(obj.payload.id)
-      );
-      console.log(index, "index");
-      newUpdatearray[index] = obj.payload;
-      console.log(newUpdatearray);
+      const newUpdatearray = [...state.userDetails, ...obj.payload];
+      // const index = state.userDetails.findIndex(
       state.userDetails = newUpdatearray;
+    },
+    updateRole: (state, obj) => {
+      state.userRole = obj.payload;
     },
   },
 });
 
-export const { addition, remove, edit, set } = sideBarSlice.actions;
+export const { addition,updateRole, remove, edit, set } = sideBarSlice.actions;
 
 // const [count, setCount] = useState(0);
 
