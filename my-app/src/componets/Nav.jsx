@@ -3,7 +3,8 @@ import { useState } from "react";
 import Context from "./Context";
 export default function Nav(props) {
   let name = "header"; //declaration
-  const values = useContext(Context);
+  // const values = useContext(Context);
+  const { state, dispatch } = useContext(Context);
   function returnName() {
     let age = 34;
     if (props.name) {
@@ -35,10 +36,10 @@ export default function Nav(props) {
       </ul>
 
       <div className="cart">
-        <span>{values.selectedUsers.length}</span>
+        {/* <span>{values.selectedUsers.length}</span> */}
         {/* <i className="fas fa-shopping-cart"></i> */}
       </div>
-
+      <h1>{state.count}</h1>
       {props.children}
     </nav>
   );

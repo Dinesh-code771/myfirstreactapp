@@ -1,16 +1,18 @@
 import Cards from "./componets/Cards";
 import Nav from "./componets/Nav";
 import SideBar from "./componets/SideBar";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import Greetings from "./componets/Greetings";
 import "./App.css";
 import ContextProvider from "./componets/ContextProvider";
 import { Outlet, createBrowserRouter } from "react-router-dom";
 import About from "./componets/About";
-import Context from "./componets/Context";
+
 // import { createBrowserRouter,RouterProvider } from "react-router-dom";
 
 function App() {
+
+
   return (
     <ContextProvider>
       <div className="App">
@@ -23,6 +25,7 @@ function App() {
         </div>
         <Greetings />
       </div>
+      
     </ContextProvider>
   );
 }

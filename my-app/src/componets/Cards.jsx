@@ -42,9 +42,9 @@ export default function Cards(props) {
       setAllUsers(users);
     }
     fetchData();
-    console.log(inputRef, "in");
+
   }, []);
-  console.log(inputRef, "in");
+
   return (
     <div style={{ padding: "20px" }}>
       <div className="searchWrap">
