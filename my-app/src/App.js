@@ -17,6 +17,7 @@ function App() {
     <ContextProvider>
       <div className="App">
         <Nav />
+
         <div className="flex">
           <SideBar />
           {/* <Cards /> */}

@@ -151,3 +151,29 @@ a {
   color: red;
   font-size: 12px;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+label {
+  font-size: 12px;
+  font-weight: bold;
+}
+input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #282c34;
+}
+.formClass {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 50%;
+  margin: 0 auto;
+  border: 1px solid #282c34;
+  padding: 20px;
+  margin-top: 30px;
+}
+

@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import About from "./componets/About";
 import Error from "./componets/Error";
 // import { appRouter } from "./App";
+import Login from "./componets/Login";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Details from "./componets/Details";
 const appRouter = createBrowserRouter([
@@ -32,6 +33,10 @@ const appRouter = createBrowserRouter([
       },
     ],
     errorElement: <Error />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 
   // {
