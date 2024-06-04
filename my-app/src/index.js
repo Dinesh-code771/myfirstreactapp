@@ -6,6 +6,7 @@ import Cards from "./componets/Cards";
 import reportWebVitals from "./reportWebVitals";
 import About from "./componets/About";
 import Error from "./componets/Error";
+import Forms from "./componets/Forms";
 // import { appRouter } from "./App";
 import Login from "./componets/Login";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -37,6 +38,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/form",
+    element: <Forms />,
   },
 
   // {

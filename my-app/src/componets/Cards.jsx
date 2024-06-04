@@ -42,8 +42,15 @@ export default function Cards(props) {
       setAllUsers(users);
     }
     fetchData();
-
   }, []);
+
+  function handleSortBy(name) {
+    let sortedUsers = [...users];
+    sortedUsers.sort((a, b) => {
+      return a[name].localeCompare(b[name]);
+    });
+    setUsers(sortedUsers);
+  }
 
   return (
     <div style={{ padding: "20px" }}>
@@ -80,6 +87,8 @@ export default function Cards(props) {
         <h3>Users Count: {users.length}</h3>
         <input></input>
 
+        <span onClick={() => handleSortBy("name")}>sort by name</span>
+        <span onClick={() => handleSortBy("email")}>sort by email</span>
         {user && <h3>{user.name}</h3>}
       </div>
       <div className="flex flex-wrap">
