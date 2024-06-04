@@ -1,8 +1,12 @@
 import React, { useContext } from "react";
-import Context from "./Context";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { increment } from "../Redux/counterSlice";
 export default function SideBar() {
-  const { state, dispatch } = useContext(Context);
   // console.log(store, "state");
+  const count = useSelector((state) => state.counter.value);
+  const userName = useSelector((state) => state.sideBar.name);
+  const dispatch = useDispatch();
   return (
     <div className="sideBar">
       <h2>Side Bar</h2>
@@ -17,10 +21,9 @@ export default function SideBar() {
           <a href="/contact">Contact</a>
         </li>
       </ul>
-      <button onClick={()=>{
-        dispatch({type: "INCREMENT"})
-      }}>INCREMENT</button>
-      <p>{state.count}</p>
+
+      <h2>{count}</h2>
+      <h2>{userName}</h2>
     </div>
   );
 }

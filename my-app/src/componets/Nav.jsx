@@ -1,10 +1,14 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import Context from "./Context";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { increment } from "../Redux/counterSlice";
 export default function Nav(props) {
   let name = "header"; //declaration
   // const values = useContext(Context);
-  const { state, dispatch } = useContext(Context);
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
   function returnName() {
     let age = 34;
     if (props.name) {
@@ -35,11 +39,21 @@ export default function Nav(props) {
         </li>
       </ul>
 
+      <h1>{count} </h1>
+
+      <button
+        onClick={() => {
+          dispatch(increment());
+        }}
+      >
+        Increment
+      </button>
+
       <div className="cart">
         {/* <span>{values.selectedUsers.length}</span> */}
         {/* <i className="fas fa-shopping-cart"></i> */}
       </div>
-      <h1>{state.count}</h1>
+
       {props.children}
     </nav>
   );

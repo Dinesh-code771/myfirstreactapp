@@ -6,15 +6,14 @@ import Greetings from "./componets/Greetings";
 import "./App.css";
 import ContextProvider from "./componets/ContextProvider";
 import { Outlet, createBrowserRouter } from "react-router-dom";
-import About from "./componets/About";
 
+import { store } from "./Redux/store";
+import { Provider } from "react-redux";
 // import { createBrowserRouter,RouterProvider } from "react-router-dom";
 
 function App() {
-
-
   return (
-    <ContextProvider>
+
       <div className="App">
         <Nav />
 
@@ -26,8 +25,7 @@ function App() {
         </div>
         <Greetings />
       </div>
-      
-    </ContextProvider>
+
   );
 }
 
