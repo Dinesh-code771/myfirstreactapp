@@ -12,11 +12,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Details from "./componets/Details";
 import { Provider } from "react-redux";
 import { store } from "./Redux/store";
+import SwiggyHome from "./componets/Swiggy/SwiggyHome";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <SwiggyHome/>,
     children: [
       {
         path: "/",
