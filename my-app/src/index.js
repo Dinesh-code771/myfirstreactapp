@@ -13,23 +13,39 @@ import Details from "./componets/Details";
 import { Provider } from "react-redux";
 import { store } from "./Redux/store";
 import SwiggyHome from "./componets/Swiggy/SwiggyHome";
+import SwiggyMain from "./componets/Swiggy/SwiggyMain";
+import SwiggySerach from "./componets/Swiggy/SwiggySerach";
+import SwiggyHelp from "./componets/Swiggy/SwiggyHelp";
+import SwiggyOffer from "./componets/Swiggy/SwiggyOffer";
+import dishes from "./componets/Swiggy/SwiggyData";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <SwiggyHome/>,
+    element: <SwiggyHome />,
     children: [
       {
         path: "/",
-        element: <Cards />,
+        element: (
+          <SwiggyMain
+            text="What's on your mind?"
+            data={dishes}
+            width={144}
+            height={180}
+          />
+        ),
       },
       {
-        path: "/about",
-        element: <About />,
+        path: "/search",
+        element: <SwiggySerach />,
       },
       {
-        path: "/contact",
-        element: <div>Contact page</div>,
+        path: "/help",
+        element: <SwiggyHelp />,
+      },
+      {
+        path: "/offers",
+        element: <SwiggyOffer />,
       },
       {
         path: "/about/:name",

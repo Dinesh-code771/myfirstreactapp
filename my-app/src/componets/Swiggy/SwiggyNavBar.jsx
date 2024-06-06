@@ -1,6 +1,12 @@
 import React from "react";
 import "../../App.css";
 import SwiggyIcon from "./SwiggyIcon";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useRoutes,
+} from "react-router-dom";
 export default function SwiggyNavBar() {
   const navElements = [
     {
@@ -32,6 +38,7 @@ export default function SwiggyNavBar() {
         </svg>
       ),
       name: "Swiggy Corporate",
+      path: "https://www.swiggy.com/about-us/",
     },
     {
       icon: (
@@ -46,6 +53,7 @@ export default function SwiggyNavBar() {
         </svg>
       ),
       name: "Search",
+      path: "/search",
     },
     {
       icon: (
@@ -60,6 +68,7 @@ export default function SwiggyNavBar() {
         </svg>
       ),
       name: "Offers",
+      path: "/offers",
     },
     {
       icon: (
@@ -74,6 +83,7 @@ export default function SwiggyNavBar() {
         </svg>
       ),
       name: "Help",
+      path: "/help",
     },
     {
       icon: (
@@ -88,6 +98,7 @@ export default function SwiggyNavBar() {
         </svg>
       ),
       name: "Sign In",
+      path: "/login",
     },
     {
       icon: (
@@ -102,8 +113,12 @@ export default function SwiggyNavBar() {
         </svg>
       ),
       name: "Cart",
+      path: "/cart",
     },
   ];
+  // const route = useRoutes();
+  // console.log(route);
+  const { pathname } = useLocation();
   return (
     <div className="navBarWrapper">
       <nav className="navBar">
@@ -148,8 +163,13 @@ export default function SwiggyNavBar() {
         <div className="navRight">
           {navElements.map((element, index) => {
             return (
-              <a href="/" key={index}>
-                <SwiggyIcon icon={element.icon} text={element.name} />
+              <a href={`${element.path}`} key={index}>
+                <SwiggyIcon
+                  icon={element.icon}
+                  text={element.name}
+                  currentPathName={pathname}
+                  path={element.path}
+                />
               </a>
             );
           })}

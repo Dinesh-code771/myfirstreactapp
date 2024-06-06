@@ -63,10 +63,101 @@ span a:hover {
   color: #fc8019;
 }
 
+.iconColor {
+  color: #fc8019 !important;
+}
+
 .iconStyling span {
-  color: #3d4152;
+  /* color: #3d4152; */
   font-family: ProximaNova, arial, Helvetica Neue, sans-serif;
   font-size: 16px;
   line-height: 1.2;
   font-weight: 500;
+}
+
+.switchWrapper {
+  width: 100%;
+}
+.main {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dishes {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+  flex-direction: row;
+}
+.mainHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.dishesWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  overflow-x: auto;
+  padding-bottom: 50px;
+}
+::-webkit-scrollbar {
+  width: 5px;
+  height: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: lightgrey;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: grey;
+}
+
+/* swiggy search */
+.searchWrapper {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.searchSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.swiggySearch {
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input::placeholder {
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 500;
+  color: #3d4152;
+}
+input:focus {
+  outline: none;
+}
+
+.cuisinesWrapper{
+  padding-left: 20px;
 }
