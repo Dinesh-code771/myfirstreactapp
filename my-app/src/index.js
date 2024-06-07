@@ -18,7 +18,7 @@ import SwiggySerach from "./componets/Swiggy/SwiggySerach";
 import SwiggyHelp from "./componets/Swiggy/SwiggyHelp";
 import SwiggyOffer from "./componets/Swiggy/SwiggyOffer";
 import dishes from "./componets/Swiggy/SwiggyData";
-
+import SwiggyMainSection from "./componets/Swiggy/SwiggyMainSection";
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -26,14 +26,7 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <SwiggyMain
-            text="What's on your mind?"
-            data={dishes}
-            width={144}
-            height={180}
-          />
-        ),
+        element: <SwiggyMainSection />,
       },
       {
         path: "/search",

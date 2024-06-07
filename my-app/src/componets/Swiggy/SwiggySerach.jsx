@@ -19,6 +19,7 @@ export default function SwiggySerach() {
             height={93}
           />
         </div>
+
       </div>
     </div>
   );
