@@ -1,5 +1,6 @@
 import React from "react";
-
+import { useDispatch } from "react-redux";
+import { setIsFilterModelOpen } from "../../Redux/filterSlice";
 export default function SwiggyFilter() {
   let filters = [
     {
@@ -30,15 +31,29 @@ export default function SwiggyFilter() {
   return (
     <div className="filterWrapper">
       {filters.map((filter) => {
-        return <SwiggyFilterPebble key={filter.name} name={filter.name} icon={filter.icon} />;
+        return (
+          <SwiggyFilterPebble
+            key={filter.name}
+            name={filter.name}
+            icon={filter.icon}
+          />
+        );
       })}
     </div>
   );
 }
 
-function SwiggyFilterPebble({name, icon}) {
+function SwiggyFilterPebble({ name, icon }) {
+  const dispatch = useDispatch();
   return (
-    <div className="filterPebble ">
+    <div
+      onClick={() => {
+        if (name === "filter") {
+          dispatch(setIsFilterModelOpen(true));
+        }
+      }}
+      className="filterPebble "
+    >
       <div className="filterName">{name}</div>
       <div className="filterIcon"></div>
     </div>

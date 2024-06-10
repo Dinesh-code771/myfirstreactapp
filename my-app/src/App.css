@@ -8,6 +8,10 @@
   width: 100%;
   height: 10vh;
   box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1);
+  position: sticky;
+  background-color: white;
+  top: 0;
+  z-index: 1000;
 }
 .navBar {
   width: 70%;
@@ -238,17 +242,16 @@ input:focus {
   gap: 20px;
   flex-wrap: wrap;
 }
-.allResWrapper{
+.allResWrapper {
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.filterWrapper{
+.filterWrapper {
   display: flex;
   gap: 20px;
   align-items: center;
-
 }
 
 .filterPebble {
@@ -261,11 +264,161 @@ input:focus {
   background-color: white;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
   cursor: pointer;
-
 }
 .filterName {
   font-size: 14px;
   line-height: 1.2;
   font-weight: 400;
   color: #3d4152;
-} 
+}
+
+.filterModel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-radius: 10px;
+  background: #62626262;
+  /* opacity: 0.6; */
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.filter {
+  width: 60%;
+  height: 60%;
+  background-color: white;
+  opacity: 1;
+  position: absolute;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.swiggyHome {
+  position: relative;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.filterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid lightgray;
+}
+.filterClose {
+  cursor: pointer;
+}
+
+.filterBody {
+  display: flex;
+  height: 100%;
+}
+
+.filterBodyLeft {
+  flex: 3;
+  border-right: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+.filterBodyRight {
+  flex: 7;
+}
+.nameFilter {
+  font-size: 18px;
+  padding-left: 0;
+  line-height: 1.2;
+  font-weight: bold;
+  color: #3d4152;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.activeState {
+  width: 7px;
+  height: 45px;
+  border-radius: 2px;
+}
+.active {
+  /* border-left: 5px solid #fc8019; */
+  background-color: #fc8019;
+}
+
+.filterOption {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+}
+.filterOption:hover {
+  background-color: #f5f5f5;
+}
+.filterOptions {
+  padding: 20px;
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.optionName {
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #3d4152;
+}
+
+.filterOptionName {
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #3d4152;
+}
+.filterFooter {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  padding: 20px;
+  border-top: 1px solid lightgray;
+}
+
+.filterFooter .end {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.apply {
+  padding: 10px 70px;
+  border-radius: 10px;
+  background-color: #e76d09;
+  color: white;
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: bolder;
+  cursor: pointer;
+  border: none;
+}
+
+.clear {
+  padding: 10px 70px;
+  border-radius: 10px;
+  background-color: white;
+  color: #e76d09;
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: bolder;
+  cursor: pointer;
+  border: 1px solid #e76d09;
+}

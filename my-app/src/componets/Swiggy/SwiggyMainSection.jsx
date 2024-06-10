@@ -47,6 +47,9 @@ export default function SwiggyMainSection() {
           })}
         </div>
       </div>
+
+      {/* filter model */}
+     
     </>
   );
 }
