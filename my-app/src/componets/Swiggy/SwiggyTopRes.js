@@ -9,6 +9,7 @@ let resTopData = [
     resPrice: 400,
     resDiscount: 20,
     resImgText: "30% OFF UPTO 75%",
+    category: "veg",
   },
   {
     resName: "Burger King",
@@ -20,6 +21,7 @@ let resTopData = [
     resPrice: 400,
     resDiscount: 20,
     resImgText: "50% OFF UPTO 85%",
+    category: "veg",
   },
   {
     resName: "Varalakshmi Tiffins",
@@ -31,6 +33,7 @@ let resTopData = [
     resPrice: 400,
     resDiscount: 20,
     resImgText: "30% OFF UPTO 75%",
+    category: "veg",
   },
   {
     resName: "Cafe Niloufer Premium Lounge",
@@ -41,6 +44,7 @@ let resTopData = [
     resTime: 45,
     resPrice: 400,
     resDiscount: 20,
+    category: "veg",
   },
   {
     resName: "Udipi's Upahar",
@@ -52,6 +56,7 @@ let resTopData = [
     resPrice: 400,
     resDiscount: 20,
     resImgText: "10% OFF UPTO 75%",
+    category: "Non-Veg",
   },
   {
     resName: "Biryani Blues",
@@ -62,6 +67,7 @@ let resTopData = [
     resTime: 45,
     resPrice: 400,
     resDiscount: 20,
+    category: "Non-Veg",
   },
   {
     resName: "Biryani Blues",
@@ -72,6 +78,7 @@ let resTopData = [
     resTime: 45,
     resPrice: 400,
     resDiscount: 20,
+    category: "Non-Veg",
   },
   {
     resName: "Biryani Blues",
@@ -82,6 +89,7 @@ let resTopData = [
     resTime: 45,
     resPrice: 400,
     resDiscount: 20,
+    category: "Non-Veg",
   },
   {
     resName: "Biryani Blues",
@@ -92,6 +100,7 @@ let resTopData = [
     resTime: 45,
     resPrice: 400,
     resDiscount: 20,
+    category: "Non-Veg",
   },
   {
     resName: "Biryani Blues",
@@ -102,6 +111,19 @@ let resTopData = [
     resTime: 45,
     resPrice: 400,
     resDiscount: 20,
+    category: "Veg",
+  },
+
+  {
+    resName: "Biryani Blues",
+    resImage:
+      "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/nav4ebkoxrwlladx7a5m",
+    resDescription: "Biryani, North Indian, Mughlai",
+    resRating: 4.3,
+    resTime: 45,
+    resPrice: 400,
+    resDiscount: 20,
+    category: "Non-Veg",
   },
   {
     resName: "Biryani Blues",
@@ -112,6 +134,7 @@ let resTopData = [
     resTime: 45,
     resPrice: 400,
     resDiscount: 20,
+    category: "Non-Veg",
   },
   {
     resName: "Biryani Blues",
@@ -122,16 +145,7 @@ let resTopData = [
     resTime: 45,
     resPrice: 400,
     resDiscount: 20,
-  },
-  {
-    resName: "Biryani Blues",
-    resImage:
-      "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/nav4ebkoxrwlladx7a5m",
-    resDescription: "Biryani, North Indian, Mughlai",
-    resRating: 4.3,
-    resTime: 45,
-    resPrice: 400,
-    resDiscount: 20,
+    category: "Non-Veg",
   },
 ];
 export default resTopData;

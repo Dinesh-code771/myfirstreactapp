@@ -1,35 +1,106 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsFilterModelOpen } from "../../Redux/filterSlice";
+import { setHandleClearFilters } from "../../Redux/filterSlice";
+import { setHandleChange } from "../../Redux/filterSlice";
 export default function SwiggFilterModel() {
   const isFilterOpen = useSelector((state) => state.filter.isFilterModelOpen);
   const dispatch = useDispatch();
   const [currentState, setCurrentState] = useState(0);
-  const filters = [
-    {
-      name: "Sort",
-      options: [
-        "Relevance",
-        "Rating",
-        "Fastest Delivery",
-        "Price: Low to High",
-        "Price: High to Low",
-      ],
-    },
-    {
-      name: "Veg/Non-Veg",
-      options: ["Veg", "Non-Veg"],
-    },
-    {
-      name: "Delivery Time",
-      options: ["30 min", "45 min", "60 min"],
-    },
-    {
-      name: "Cost for two",
-      options: [" Less than 200", "Rs.300-Rs.400", "Greater than 600"],
-    },
-  ];
+  const filters = useSelector((state) => state.filter.filters);
+  function handleOnChange(e, option, key) {
+    if (key === "Ratings") {
+      let newFilters = filters.map((filter) => {
+        if (filter.name === key) {
+          if (filter.selectedOption.includes(option)) {
+            return {
+              ...filter,
+              selectedOption: filter.selectedOption.filter(
+                (item) => item !== option
+              ),
+            };
+          } else {
+            return {
+              ...filter,
+              selectedOption: [...filter.selectedOption, option],
+            };
+          }
+        }
+        return filter;
+      });
+      dispatch(setHandleChange(newFilters));
+      return;
+    }
+    let newFilters = filters.map((filter) => {
+      if (filter.name === key) {
+        return { ...filter, selectedOption: option };
+      }
+      return filter;
+    });
+    dispatch(setHandleChange(newFilters));
+  }
+
+  function handleClear() {
+    console.log("clear");
+    dispatch(
+      setHandleClearFilters([
+        {
+          name: "Sort",
+          options: [
+            "Relevance",
+            "Rating",
+            "Fastest Delivery",
+            "Price: Low to High",
+            "Price: High to Low",
+          ],
+          selectedOption: "Relevance",
+        },
+        {
+          name: "Veg/Non-Veg",
+          options: ["Veg", "Non-Veg"],
+          selectedOption: "Veg",
+        },
+        {
+          name: "Delivery Time",
+          options: ["30 min", "45 min", "60 min"],
+          selectedOption: "30 min",
+        },
+        {
+          name: "Cost for two",
+          options: ["Less than 200", "Rs.300-Rs.400", "Greater than 600"],
+          selectedOption: "Less than 200",
+        },
+        {
+          name: "Ratings",
+          options: ["4.0+", "4.5+", "5.0"],
+          selectedOption: ["4.0+"],
+        },
+      ])
+    );
+  }
+  function checkIsDisabled() {
+    // console.log(filters, "filters");
+    let isDisabled = true;
+    filters.forEach((filter) => {
+      if (filter.name === "Ratings") {
+        if (filter.selectedOption.length > 0) {
+          isDisabled = false;
+        }
+      } else {
+        if (
+          filter.selectedOption !== "Relevance" ||
+          filter.selectedOption !== "Veg" ||
+          filter.selectedOption !== "30 min" ||
+          filter.selectedOption !== "Less than 200"
+        ) {
+          console.log("elese", filter.selectedOption);
+          isDisabled = false;
+        }
+      }
+    });
+    return isDisabled;
+  }
   return (
     <div
       onClick={() => {
@@ -81,7 +152,39 @@ export default function SwiggFilterModel() {
                 {filters[currentState].options.map((option) => {
                   return (
                     <div key={option} className="filterOption">
-                      <input type="radio" />
+                      {filters[currentState].name === "Ratings" ? (
+                        <input
+                          type="checkbox"
+                          name={filters[currentState].name}
+                          id={option}
+                          checked={filters[
+                            currentState
+                          ].selectedOption.includes(option)} // Updated this line
+                          onChange={(e) =>
+                            handleOnChange(
+                              e,
+                              option,
+                              filters[currentState].name
+                            )
+                          }
+                        />
+                      ) : (
+                        <input
+                          type="radio"
+                          name={filters[currentState].name}
+                          id={option}
+                          checked={
+                            filters[currentState].selectedOption === option
+                          } // Updated this line
+                          onChange={(e) =>
+                            handleOnChange(
+                              e,
+                              option,
+                              filters[currentState].name
+                            )
+                          }
+                        />
+                      )}
                       <span className="optionName">{option}</span>
                     </div>
                   );
@@ -93,8 +196,21 @@ export default function SwiggFilterModel() {
 
         <div className="filterFooter">
           <div className="end">
-            <button className="clear">Clear</button>
-            <button className="apply">Apply</button>
+            <button
+              isDisabled={checkIsDisabled()}
+              onClick={handleClear}
+              className="clear"
+            >
+              Clear
+            </button>
+            <button
+              onClick={() => {
+                dispatch(setIsFilterModelOpen(false));
+              }}
+              className="apply"
+            >
+              Apply
+            </button>
           </div>
         </div>
       </div>

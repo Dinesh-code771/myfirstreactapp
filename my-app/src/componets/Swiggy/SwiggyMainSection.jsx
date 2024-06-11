@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SwiggyMain from "./SwiggyMain";
 import dishes from "./SwiggyData";
 import resTopData from "./SwiggyTopRes";
 import SwiggyResCard from "./SwiggyResCard";
 import SwiggyFilter from "./SwiggyFilter";
+import { useSelector } from "react-redux";
 export default function SwiggyMainSection() {
+  const [restaurants, setRestaurants] = React.useState(resTopData);
+
+  const filters = useSelector((state) => state.filter.filters);
+  useEffect(() => {
+    let updatedData = resTopData.filter((restaurant) => {
+      return (
+        filters
+          .find((filter) => filter.name === "Veg/Non-Veg")
+          .selectedOption.toLowerCase() === restaurant["category"].toLowerCase()
+      );
+    });
+    setRestaurants(updatedData);
+  }, [filters]);
   return (
     <>
       <SwiggyMain
@@ -36,7 +50,7 @@ export default function SwiggyMainSection() {
         <SwiggyFilter />
 
         <div className="allRes">
-          {resTopData.map((item) => {
+          {restaurants.map((item) => {
             return (
               <SwiggyResCard
                 restaurantDetails={item}
@@ -49,7 +63,6 @@ export default function SwiggyMainSection() {
       </div>
 
       {/* filter model */}
-     
     </>
   );
 }
