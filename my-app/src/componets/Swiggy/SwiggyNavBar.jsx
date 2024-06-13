@@ -116,8 +116,7 @@ export default function SwiggyNavBar() {
       path: "/cart",
     },
   ];
-  // const route = useRoutes();
-  // console.log(route);
+
   const { pathname } = useLocation();
   return (
     <div className="navBarWrapper">

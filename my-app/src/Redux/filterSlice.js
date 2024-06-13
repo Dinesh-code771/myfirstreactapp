@@ -35,6 +35,7 @@ const initialState = {
       selectedOption: ["4.0+"],
     },
   ],
+  isfilterApplied: false,
 };
 
 export const filterSlice = createSlice({
@@ -50,10 +51,17 @@ export const filterSlice = createSlice({
     setHandleClearFilters: (state, action) => {
       state.filters = action.payload;
     },
+    setIsFilterApplied: (state, action) => {
+      state.isfilterApplied = action.payload;
+    },
   },
 });
 
-export const { setIsFilterModelOpen, setHandleChange, setHandleClearFilters } =
-  filterSlice.actions;
+export const {
+  setIsFilterModelOpen,
+  setHandleChange,
+  setIsFilterApplied,
+  setHandleClearFilters,
+} = filterSlice.actions;
 
 export default filterSlice.reducer;

@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { increment } from "../Redux/counterSlice";
 export default function SideBar() {
-  // console.log(store, "state");
   const count = useSelector((state) => state.counter.value);
   const userName = useSelector((state) => state.sideBar.name);
   const dispatch = useDispatch();

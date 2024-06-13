@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsFilterModelOpen } from "../../Redux/filterSlice";
 import { setHandleClearFilters } from "../../Redux/filterSlice";
-import { setHandleChange } from "../../Redux/filterSlice";
+import { setHandleChange, setIsFilterApplied } from "../../Redux/filterSlice";
 export default function SwiggFilterModel() {
   const isFilterOpen = useSelector((state) => state.filter.isFilterModelOpen);
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ export default function SwiggFilterModel() {
   }
 
   function handleClear() {
-    console.log("clear");
+
     dispatch(
       setHandleClearFilters([
         {
@@ -80,7 +80,6 @@ export default function SwiggFilterModel() {
     );
   }
   function checkIsDisabled() {
-    // console.log(filters, "filters");
     let isDisabled = true;
     filters.forEach((filter) => {
       if (filter.name === "Ratings") {
@@ -94,12 +93,18 @@ export default function SwiggFilterModel() {
           filter.selectedOption !== "30 min" ||
           filter.selectedOption !== "Less than 200"
         ) {
-          console.log("elese", filter.selectedOption);
           isDisabled = false;
         }
       }
     });
     return isDisabled;
+  }
+
+  function handleCloseModel() {
+    dispatch(setIsFilterModelOpen(false));
+    setTimeout(() => {
+      dispatch(setIsFilterApplied(false));
+    }, 1000);
   }
   return (
     <div
@@ -205,7 +210,8 @@ export default function SwiggFilterModel() {
             </button>
             <button
               onClick={() => {
-                dispatch(setIsFilterModelOpen(false));
+                dispatch(setIsFilterApplied(true));
+                handleCloseModel();
               }}
               className="apply"
             >
